@@ -23,7 +23,7 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        //
+        return view('/add');
     }
 
     /**
@@ -46,7 +46,7 @@ class MahasiswaController extends Controller
         }
         $validatedData['hobi'] = isset($validatedData['hobi']) ? json_encode($validatedData['hobi']) : null;
         Mahasiswa::create($validatedData);
-        return redirect('/add')->with('success', 'Mahasiswa baru berhasil ditambahkan');
+        return redirect('/add')->with('success', 'Data mahasiswa baru berhasil ditambahkan');
     }
 
     /**
@@ -64,7 +64,9 @@ class MahasiswaController extends Controller
      */
     public function edit(Mahasiswa $mahasiswa)
     {
-        //
+        return view('/edit-mahasiswa', [
+            'mahasiswa' => $mahasiswa
+        ]);
     }
 
     /**
@@ -86,14 +88,13 @@ class MahasiswaController extends Controller
             if ($mahasiswa->foto) {
                 Storage::delete($mahasiswa->foto);
             }
-    
             $validatedData['foto'] = $request->file('foto')->store('mahasiswa/foto', 'public');
         }
     
         $validatedData['hobi'] = isset($validatedData['hobi']) ? json_encode($validatedData['hobi']) : null;
         $mahasiswa->update($validatedData);
     
-        return redirect('/mahasiswa')->with('success', 'mahasiswa berhasil diperbarui!');
+        return redirect('/mahasiswa')->with('success', 'Data mahasiswa berhasil diperbarui!');
     }
 
     /**
@@ -101,14 +102,11 @@ class MahasiswaController extends Controller
      */
     public function destroy(Mahasiswa $mahasiswa)
     {
-        if($mahasiswa->link_foto){
-            Storage::delete($mahasiswa->link_foto);
+        if($mahasiswa->foto){
+            Storage::delete($mahasiswa->foto);
         }
         Mahasiswa::destroy($mahasiswa->id);
-        return redirect('/admin/berita')->with('success', 'Mahasiswa berhasil dihapus');
+        return redirect('/mahasiswa')->with('success', 'Data mahasiswa berhasil dihapus');
     }
-    public function editdatadiri(Request $request)
-    {
-        dd($request);
-    }
+    
 }

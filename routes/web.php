@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
-Route::get('/add', function () {
-    return view('add');
-});
 Route::get('/latihan', function () {
     return view('latihan');
 });
@@ -61,14 +58,6 @@ Route::post('/genapganjil', function (Request $request) {
     return redirect('/latihan')->with('angkas', $angkas);
 });
 Route::resource('/mahasiswa', MahasiswaController::class);
-
 Route::get('/login', [LoginController::class, 'index']);
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
-Route::post('/editdatadiri', function(Request $request){
-    // dd($request->nim);
-    $mahasiswa = Mahasiswa::where('nim',$request->nim)->first();
-    return view('edit-mahasiswa', [
-        'mahasiswa' => $mahasiswa
-    ]);
-});
