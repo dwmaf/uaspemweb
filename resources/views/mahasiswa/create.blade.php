@@ -1,15 +1,6 @@
 @extends('layouts.layout')
 @section('kodecss')
-    <style>
-        @media (max-width: 992px){
-            .item-kiri{
-              margin-bottom: 5px;
-            }
-            .item-kanan{
-              margin-top: 5px;
-            }
-        }
-    </style>
+    
 @endsection
 @section('child')
     <div class="row gx-1 my-1">
@@ -20,7 +11,7 @@
             <div class="bg-light rounded-4 p-4">
                 <form class="" method="post" action="/mahasiswa" enctype="multipart/form-data">
                     @csrf
-                    <h4 class="genshin mb-1">Tambah data mahasiswa</h4>
+                    <h4 class="genshin mb-1">Tambah data mahasiswa baru</h4>
                     <div class="mb-3 ">
                         <label class="form-label genshin" for="nim">Nim</label>
                         <input class="form-control genshin fs-7" name="nim" id="nim" type="text">

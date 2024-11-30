@@ -13,7 +13,7 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        return view('/daftar-mahasiswa', [
+        return view('/mahasiswa/daftar-mahasiswa', [
             'mahasiswas' => Mahasiswa::all(),
         ]);
     }
@@ -23,7 +23,7 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        return view('/add');
+        return view('/mahasiswa/create');
     }
 
     /**
@@ -31,7 +31,7 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+        dd($request);
         $validatedData = $request->validate([
             'nim' => 'required',
             'nama' => 'required',
@@ -46,7 +46,7 @@ class MahasiswaController extends Controller
         }
         $validatedData['hobi'] = isset($validatedData['hobi']) ? json_encode($validatedData['hobi']) : null;
         Mahasiswa::create($validatedData);
-        return redirect('/add')->with('success', 'Data mahasiswa baru berhasil ditambahkan');
+        return redirect('/mahasiswa/create')->with('success', 'Data mahasiswa baru berhasil ditambahkan');
     }
 
     /**
@@ -54,8 +54,8 @@ class MahasiswaController extends Controller
      */
     public function show(Mahasiswa $mahasiswa)
     {
-        return view('/detail-mahasiswa', [
-            'mahasiswa' => Mahasiswa::where('id', $mahasiswa->id)->get(),
+        return view('/mahasiswa/detail-mahasiswa', [
+            'mahasiswa' => $mahasiswa
         ]);
     }
 
@@ -64,7 +64,7 @@ class MahasiswaController extends Controller
      */
     public function edit(Mahasiswa $mahasiswa)
     {
-        return view('/edit-mahasiswa', [
+        return view('/mahasiswa/edit', [
             'mahasiswa' => $mahasiswa
         ]);
     }
@@ -74,21 +74,22 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, Mahasiswa $mahasiswa)
     {
+        // dd($request);
         $validatedData = $request->validate([
-            'nim' => 'required|max:10|unique:mahasiswas,nim,' . $mahasiswa->id,
-            'nama' => 'required|max:100',
-            'jeniskelamin' => 'required|in:Laki-laki,Perempuan',
+            'nim' => 'required',
+            'nama' => 'required',
+            'jeniskelamin' => 'required',
             'hobi' => 'array',
             'agama' => 'required',
             'alamat' => 'required',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'foto' => 'image',
         ]);
     
         if ($request->file('foto')) {
             if ($mahasiswa->foto) {
                 Storage::delete($mahasiswa->foto);
             }
-            $validatedData['foto'] = $request->file('foto')->store('mahasiswa/foto', 'public');
+            $validatedData['foto'] = $request->file('foto')->store('foto_mahasiswa');
         }
     
         $validatedData['hobi'] = isset($validatedData['hobi']) ? json_encode($validatedData['hobi']) : null;

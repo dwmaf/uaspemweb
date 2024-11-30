@@ -1,17 +1,4 @@
 @extends('layouts.layout')
-@section('kodecss')
-    <style>
-        @media (max-width: 992px) {
-            .item-kiri {
-                margin-bottom: 5px;
-            }
-
-            .item-kanan {
-                margin-top: 5px;
-            }
-        }
-    </style>
-@endsection
 @section('child')
     <div class="row gx-1 my-1">
         <div class="col-lg-3 col-12 item-kiri">
@@ -19,7 +6,9 @@
         </div>
         <div class="col-lg-6 col-12 ">
             <div class="bg-light rounded-4 p-4">
-                <form class="" method="post" action="/mahasiswa/{{ $mahasiswa->id }}" enctype="multipart/form-data">
+                <form method="post" action="/mahasiswa/{{ $mahasiswa->id }}" enctype="multipart/form-data">
+                    @csrf
+                    @method('put')
                     <h5 class="genshin mb-1">Edit data anda</h5>
                     <div class="mb-3 ">
                         <label class="form-label genshin" for="nim">Nim</label>
@@ -49,7 +38,7 @@
                     <div class="mb-3">
                         <label class="form-label genshin d-block">Hobi</label>
                         @php
-                            $hobi = json_decode($mahasiswa->hobi, true); // Decode JSON ke array
+                            $hobi = json_decode($mahasiswa->hobi, true);
                         @endphp
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" name="hobi" id="inlineCheckbox1"

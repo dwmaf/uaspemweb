@@ -12,7 +12,7 @@
 </head>
 <style>
     body {
-        background-image: url('aset2.webp');
+        background-image: url('{{ asset('aset2.webp') }}');
         background-size: cover;
         backdrop-filter: blur(3px);
         padding: 8px;
@@ -21,7 +21,7 @@
 
     @font-face {
         font-family: 'Bento';
-        src: url('Bento-2OXaW.woff2') format('woff2')
+        src: url('{{ asset('Bento-2OXaW.woff2') }}') format('woff2')
     }
 
     .bento {
@@ -30,7 +30,7 @@
 
     @font-face {
         font-family: "Genshin";
-        src: url("zh-cn.woff2") format("woff2");
+        src: url('{{ asset('zh-cn.woff2') }}') format("woff2");
     }
 
     .genshin {
@@ -83,9 +83,9 @@
             <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link genshin {{ Request::is('/') ? 'active' : '' }}" href="/">Home</a>
-                    <a class="nav-link genshin {{ Request::is('/add') ? 'active' : '' }}" href="/add">Add</a>
-                    <a class="nav-link genshin {{ Request::is('/latihan') ? 'active' : '' }}" href="/latihan">Latihan</a>
-                    <a class="nav-link genshin {{ Request::is('/daftar-mahasiswa') ? 'active' : '' }}" href="/mahasiswa">Mahasiswa</a>
+                    <a class="nav-link genshin {{ Request::is('mahasiswa/create') ? 'active' : '' }}" href="{{ route('mahasiswa.create') }}">Add</a>
+                    <a class="nav-link genshin {{ Request::is('latihan') ? 'active' : '' }}" href="/latihan">Latihan</a>
+                    <a class="nav-link genshin {{ Request::is('mahasiswa') ? 'active' : '' }}" href="/mahasiswa">Mahasiswa</a>
                 </div>
             </div>
         </div>
@@ -98,26 +98,13 @@
             <a class="col-lg genshin" href="./index.php">
                 UAS Pemweb
             </a>
-            {{-- <div class="col-lg d-flex flex-column gap-1">
-                <h6 class="genshin">Source</h6>
-                <a class="genshin fs-7" target="_blank"
-                    href="https://in.pinterest.com/pin/389279961557066844/">Image source</a>
-                <a class="genshin fs-7" style="font-size: 12px" target="_blank"
-                    href="https://www.instagram.com/uxui_howard.le/">Design inspiration</a>
-            </div> --}}
             <div class="col-lg d-flex flex-column gap-2">
                 <h6 class="head genshin">Menu</h6>
-                <a class="genshin fs-7" style="" href="index.php">Home</a>
-                <a class="genshin fs-7" href="kontak.php">Kontak</a>
-                <a class="genshin fs-7" href="latihan.php">Latihan</a>
-                <a class="genshin fs-7" href="list-mahasiswa.php">Daftar Mahasiswa</a>
+                <a class="genshin fs-7" style="" href="">Home</a>
+                <a class="genshin fs-7" href="">Kontak</a>
+                <a class="genshin fs-7" href="">Latihan</a>
+                <a class="genshin fs-7" href="">Daftar Mahasiswa</a>
             </div>
-            {{-- <div class="col-lg d-flex flex-column gap-1">
-                <h6 class="head genshin">Let's connect</h6>
-                <a class="genshin" style="font-size: 12px" target="_blank" href="https://github.com/dwmaf/">Github</a>
-                <a class="genshin" style="font-size: 12px" target="_blank"
-                    href="https://www.instagram.com/dwmaf/">Instagram</a>
-            </div> --}}
         </div>
 
         <p class="genshin">Created by Dawam Agung Fathoni</p>
