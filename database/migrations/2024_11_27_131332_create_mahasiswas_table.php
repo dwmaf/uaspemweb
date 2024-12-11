@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('nim');
             $table->string('nama');
-            $table->string('jeniskelamin');
-            $table->json('hobi');
-            $table->string('agama');
-            $table->text('alamat');
-            $table->string('foto');
+            $table->string('jeniskelamin')->nullable();
+            $table->json('hobi')->nullable();
+            $table->string('agama')->nullable();
+            $table->text('alamat')->nullable();
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
     }

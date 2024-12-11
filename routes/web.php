@@ -2,12 +2,15 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\Mahasiswaver2Controller;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('index');
+    return view('index', [
+        'jumlahmahasiswa'=>Mahasiswa::count()
+    ]);
 });
 Route::get('/latihan', function () {
     return view('latihan');
@@ -58,6 +61,7 @@ Route::post('/genapganjil', function (Request $request) {
     return redirect('/latihan')->with('angkas', $angkas);
 });
 Route::resource('/mahasiswa', MahasiswaController::class);
+// Route::resource('/mahasiswaver2', Mahasiswaver2Controller::class);
 Route::get('/login', [LoginController::class, 'index']);
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);

@@ -23,7 +23,9 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        return view('/mahasiswa/create');
+        return view('/mahasiswa/create', [
+            'mahasiswas' => Mahasiswa::all(),
+        ]);
     }
 
     /**
@@ -31,20 +33,11 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
         $validatedData = $request->validate([
             'nim' => 'required',
             'nama' => 'required',
-            'jeniskelamin'=>'required',
-            'hobi'=>'array',
-            'agama'=>'required',
-            'alamat'=>'required',
-            'foto'=>'image',
         ]);
-        if($request->file('foto')) {
-            $validatedData['foto'] = $request->file('foto')->store('foto_mahasiswa');
-        }
-        $validatedData['hobi'] = isset($validatedData['hobi']) ? json_encode($validatedData['hobi']) : null;
         Mahasiswa::create($validatedData);
         return redirect('/mahasiswa/create')->with('success', 'Data mahasiswa baru berhasil ditambahkan');
     }
@@ -93,9 +86,12 @@ class MahasiswaController extends Controller
         }
     
         $validatedData['hobi'] = isset($validatedData['hobi']) ? json_encode($validatedData['hobi']) : null;
-        $mahasiswa->update($validatedData);
+        // dd($validatedData['hobi']);
+        // $mahasiswa->update($validatedData);
+        Mahasiswa::where('id', $mahasiswa->id)
+            ->update($validatedData);
     
-        return redirect('/mahasiswa')->with('success', 'Data mahasiswa berhasil diperbarui!');
+        return redirect('/')->with('success', 'Data mahasiswa berhasil diperbarui!');
     }
 
     /**
@@ -103,11 +99,12 @@ class MahasiswaController extends Controller
      */
     public function destroy(Mahasiswa $mahasiswa)
     {
+        // dd($mahasiswa);
         if($mahasiswa->foto){
             Storage::delete($mahasiswa->foto);
         }
         Mahasiswa::destroy($mahasiswa->id);
-        return redirect('/mahasiswa')->with('success', 'Data mahasiswa berhasil dihapus');
+        return redirect('/')->with('success', 'Data mahasiswa berhasil dihapus');
     }
     
 }

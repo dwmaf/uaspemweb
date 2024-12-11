@@ -1,11 +1,12 @@
 @extends('layouts.layout')
 @section('kodecss')
-    
 @endsection
 @section('child')
     <div class="row gx-1 my-1">
         <div class="col-lg-3 col-12 item-kiri">
-            <div class="bg-light rounded-4">kolom 1 25%</div>
+            <div class="bg-light rounded-4 p-3">
+                @include('components.itemkiri')
+            </div>
         </div>
         <div class="col-lg-6 col-12 ">
             <div class="bg-light rounded-4 p-4">
@@ -20,65 +21,30 @@
                         <label class="form-label genshin">Nama</label>
                         <input class="form-control genshin fs-7" name="nama" type="text">
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label genshin d-block">Jenis Kelamin</label>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="jeniskelamin" id="inlineRadio1"
-                                value="Laki-laki">
-                            <label class="form-check-label genshin fs-7" for="inlineRadio1">Laki-laki</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="jeniskelamin" id="inlineRadio2"
-                                value="Perempuan">
-                            <label class="form-check-label genshin fs-7" for="inlineRadio2">Perempuan</label>
-                        </div>
-                    </div>
-
-
-                    <div class="mb-3">
-                        <label class="form-label genshin d-block">Hobi</label>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" name="hobi[]" id="inlineCheckbox1"
-                                value="Ngoding">
-                            <label class="form-check-label genshin fs-7" for="inlineCheckbox1">Ngoding</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" name="hobi[]" id="inlineCheckbox2"
-                                value="Berenang">
-                            <label class="form-check-label genshin fs-7" for="inlineCheckbox2">Berenang</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" name="hobi[]" id="inlineCheckbox3"
-                                value="Berkuda">
-                            <label class="form-check-label genshin fs-7" for="inlineCheckbox3">Berkuda</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" name="hobi[]" id="inlineCheckbox4"
-                                value="Memanah">
-                            <label class="form-check-label genshin fs-7" for="inlineCheckbox4">Memanah</label>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="formFileLg" class="form-label genshin">Agama</label>
-                        <select class="form-select genshin fs-7" name="agama" aria-label="Default select example">
-                            <option selected value="islam" class="genshin fs-7">islam</option>
-                            <option value="Kristen" class="genshin fs-7">Kristen</option>
-                            <option value="Konghuchu" class="genshin fs-7">Konghuchu</option>
-                            <option value="Buddha" class="genshin fs-7">Buddha</option>
-                            <option value="Hindu" class="genshin fs-7">Hindu</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label genshin">Alamat</label>
-                        <textarea name="alamat" id="" class="form-control genshin fs-7"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label genshin">Foto</label>
-                        <input class="form-control genshin fs-7" name="foto" type="file">
-                    </div>
-
                     <button class="btn btn-primary genshin" type="submit">Tambah</button>
                 </form>
+                <h4 class="genshin mt-5">Daftar Mahasiswa</h4>
+                <table id="datatablesSimple" class="genshin fs-7">
+                    <thead>
+                        <tr class="">
+                            <th>No</th>
+                            <th>Nim</th>
+                            <th>Nama</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($mahasiswas as $mahasiswa)
+                            <tr class="fs-7">
+                                <td>{{ $loop->iteration }}</td>
+                                <td>
+                                    {{ $mahasiswa->nim }}
+                                </td>
+                                <td>{{ $mahasiswa->nama }}</td>
+                                
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="col-lg-3 col-12 item-kanan">

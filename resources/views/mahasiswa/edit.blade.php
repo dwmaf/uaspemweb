@@ -2,7 +2,9 @@
 @section('child')
     <div class="row gx-1 my-1">
         <div class="col-lg-3 col-12 item-kiri">
-            <div class="bg-light rounded-4">kolom 1 25%</div>
+            <div class="bg-light rounded-4 p-3">
+                @include('components.itemkiri')
+            </div>
         </div>
         <div class="col-lg-6 col-12 ">
             <div class="bg-light rounded-4 p-4">
@@ -38,10 +40,10 @@
                     <div class="mb-3">
                         <label class="form-label genshin d-block">Hobi</label>
                         @php
-                            $hobi = json_decode($mahasiswa->hobi, true);
+                            $hobi = $mahasiswa->hobi ? json_decode($mahasiswa->hobi, true) : [];
                         @endphp
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" name="hobi" id="inlineCheckbox1"
+                            <input class="form-check-input" type="checkbox" name="hobi[]" id="inlineCheckbox1"
                                 value="Ngoding" {{ in_array('Ngoding', $hobi) ? 'checked' : '' }}>
                             <label class="form-check-label genshin fs-7" for="inlineCheckbox1">Ngoding</label>
                         </div>
