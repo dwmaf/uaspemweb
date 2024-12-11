@@ -119,7 +119,9 @@
                     <a class="nav-link genshin {{ Request::is('/') ? 'active' : '' }}" href="/">Home</a>
                     <a class="nav-link genshin {{ Request::is('latihan') ? 'active' : '' }}" href="/latihan">Latihan</a>
                     <a class="nav-link genshin {{ Request::is('mahasiswa') ? 'active' : '' }}" href="/mahasiswa">Mahasiswa</a>
-                    <a class="nav-link genshin {{ Request::is('mahasiswa/create') ? 'active' : '' }}" href="/mahasiswa/create">Add</a>
+                    @if (auth()->user()->role === 'admin')
+                        <a class="nav-link genshin {{ Request::is('mahasiswa/create') ? 'active' : '' }}" href="/mahasiswa/create">Add</a>
+                    @endif
                 </div>
             </div>
         </div>
