@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Uas Pemweb</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="/js/datatables-simple-demo.js"></script>
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
@@ -17,7 +18,7 @@
         backdrop-filter: blur(3px);
         padding: 8px;
         min-height: 100vh;
-        
+
     }
 
     @font-face {
@@ -57,15 +58,19 @@
     .fs-7 {
         font-size: 12px;
     }
-    .fs-0{
-        font-size:100px;
+
+    .fs-0 {
+        font-size: 100px;
     }
-    .fs--1{
+
+    .fs--1 {
         font-size: 55px;
     }
-    .lh-0{
+
+    .lh-0 {
         line-height: 0;
     }
+
     @media (max-width: 992px) {
         .item-kiri {
             margin-bottom: 5px;
@@ -75,32 +80,40 @@
             margin-top: 5px;
         }
     }
-    .navbar .navbar-nav .active{
+
+    .navbar .navbar-nav .active {
         color: #FF0000;
     }
-    .navbar .nav-link{
+
+    .navbar .nav-link {
         color: black;
     }
-    .navbar .nav-link:hover{
+
+    .navbar .nav-link:hover {
         color: #3CC1CA
     }
-    .bg-primary-one{
+
+    .bg-primary-one {
         background-color: #3CC1CA;
     }
-    .bg-primary-two{
+
+    .bg-primary-two {
         background-color: #FF0000;
     }
-    .text-primary-one{
+
+    .text-primary-one {
         color: #3CC1CA;
     }
-    .text-primary-two{
-        color:#FF0000;
+
+    .text-primary-two {
+        color: #FF0000;
     }
 </style>
 @yield('kodecss')
 
 <body>
-    <header class=" p-4 rounded-4 d-flex flex-column align-items-center gap-1" style="background-color: rgba(0,0,0,0.5); backdrop-filter:blur(5px)">
+    <header class=" p-4 rounded-4 d-flex flex-column align-items-center gap-1"
+        style="background-color: rgba(0,0,0,0.5); backdrop-filter:blur(5px)">
         <div class="d-flex gap-3">
             <div class="rounded-4" style=" background-color: #3CC1CA; width:50px; height:50px;"></div>
             <div class="rounded-4" style=" background-color:#FF0000; width:50px; height:50px;"></div>
@@ -118,9 +131,14 @@
                 <div class="navbar-nav">
                     <a class="nav-link genshin {{ Request::is('/') ? 'active' : '' }}" href="/">Home</a>
                     <a class="nav-link genshin {{ Request::is('latihan') ? 'active' : '' }}" href="/latihan">Latihan</a>
-                    <a class="nav-link genshin {{ Request::is('mahasiswa') ? 'active' : '' }}" href="/mahasiswa">Mahasiswa</a>
-                    @if (auth()->user()->role === 'admin')
-                        <a class="nav-link genshin {{ Request::is('mahasiswa/create') ? 'active' : '' }}" href="/mahasiswa/create">Add</a>
+                    <a class="nav-link genshin {{ Request::is('mahasiswa') ? 'active' : '' }}"
+                        href="/mahasiswa">Mahasiswa</a>
+                    @if (auth()->check())
+
+                        @if (auth()->user()->role === 'admin')
+                            <a class="nav-link genshin {{ Request::is('mahasiswa/create') ? 'active' : '' }}"
+                                href="/mahasiswa/create">Add</a>
+                        @endif
                     @endif
                 </div>
             </div>
@@ -151,8 +169,11 @@
         <p class="genshin mt-3" style="color:white">Created by Dawam Agung Fathoni</p>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+        crossorigin="anonymous"></script>
     @yield('kodejs')
 </body>
 
